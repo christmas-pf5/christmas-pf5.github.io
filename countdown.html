@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Christmas Countdown | Christmas HQ</title><style>
+:root{--red:#9f3038;--green:#244b37;--cream:#fff7e8;--paper:#f3e7d2;--gold:#c6a45b;--ink:#342b25;--muted:#76695b}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+header{background:var(--green);color:var(--cream);padding:28px 18px 24px;text-align:center;border-bottom:5px solid var(--gold)}
+.eyebrow{letter-spacing:.2em;text-transform:uppercase;font-size:.75rem;color:#ead9a8}
+h1{font-size:clamp(2rem,6vw,3.4rem);margin:8px 0 6px;font-weight:normal}
+header p{margin:0;color:#f0e4c9}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:13px;background:#e9dcc3;border-bottom:1px solid #d7c6a8}
+nav a{color:var(--green);text-decoration:none;border:1px solid #cbb88f;border-radius:20px;padding:7px 12px;font-size:.9rem}
+main{max-width:1000px;margin:auto;padding:24px 16px 44px}
+.panel{background:#fffdf7;border:1px solid #dfd0b3;border-radius:16px;padding:20px;box-shadow:0 5px 16px #4b32100c;margin:14px 0}
+h2{color:var(--red);font-weight:normal;margin:0 0 12px;font-size:1.55rem}
+h3{color:var(--green);font-weight:normal}
+button,.button{font:inherit;cursor:pointer;border:0;border-radius:999px;background:var(--red);color:white;padding:11px 16px;transition:transform .15s,filter .15s}
+button:hover,.button:hover{filter:brightness(1.08);transform:translateY(-1px)}
+button.secondary{background:var(--green)}input,textarea,select{font:inherit;border:1px solid #d6c5a5;border-radius:10px;padding:10px;background:#fffdf7;color:var(--ink);max-width:100%}
+input[type="checkbox"]{accent-color:var(--green);width:18px;height:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.tile{background:#f8eedc;border:1px solid #e0cfad;border-radius:14px;padding:16px}
+.big{font-size:2rem}.muted{color:var(--muted)}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.progress{height:10px;background:#e8dcc5;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:var(--gold);transition:width .25s}
+footer{text-align:center;color:var(--muted);padding:18px;font-size:.9rem}
+.note{background:#f3e7d2;padding:12px;border-radius:10px;color:#574737}
+@media(max-width:560px){main{padding:16px 12px 30px}.panel{padding:16px}nav a{font-size:.82rem}}
+</style></head><body>
+<header><div class="eyebrow">✦ The Christmas HQ ✦</div><h1>The Christmas Countdown</h1><p>Every day brings a little more sparkle</p></header>
+<nav><a href="index.html">🏡 HQ</a><a href="countdown.html">Countdown</a><a href="cottage.html">Cottage</a><a href="cinema.html">Cinema</a><a href="kitchen.html">Kitchen</a><a href="wrapping.html">Wrapping Room</a></nav><main>
+<section class="panel" style="text-align:center"><div class="big">⭐ ❄️ ⭐</div><h2>Until Christmas Day</h2>
+<div class="grid">
+<div class="tile"><div class="big" id="days">—</div><div>days</div></div><div class="tile"><div class="big" id="hours">—</div><div>hours</div></div>
+<div class="tile"><div class="big" id="minutes">—</div><div>minutes</div></div><div class="tile"><div class="big" id="seconds">—</div><div>seconds</div></div></div>
+<p id="countdownMessage">A little more Christmas magic every day.</p></section>
+<section class="panel"><h2>December's little joys</h2><p>Tick off any festive moments you fancy doing. Nothing has to be perfect — just enjoy the season.</p>
+<div id="tasks" class="grid"></div><p><strong id="taskCount">0 of 8 completed</strong></p><div class="progress"><span id="bar"></span></div></section>
+<section class="panel"><h2>Today's tiny mission</h2><p id="mission">Press the button for a little festive idea.</p><button onclick="newMission()">Give me a mission ✨</button></section>
+</main><footer>Made with a little Christmas magic ✦ Red · Evergreen · Cream · Gold</footer>
+<script>
+function tick(){let now=new Date(),year=now.getFullYear(),x=new Date(year,11,25);if(now>x)x=new Date(year+1,11,25);let s=Math.max(0,Math.floor((x-now)/1000));document.getElementById('days').textContent=Math.floor(s/86400);document.getElementById('hours').textContent=Math.floor(s%86400/3600);document.getElementById('minutes').textContent=Math.floor(s%3600/60);document.getElementById('seconds').textContent=s%60;document.getElementById('countdownMessage').textContent=s===0?'Merry Christmas! 🎄':'Every little tradition makes the season brighter.'}tick();setInterval(tick,1000);
+const tasks=['Listen to a favourite Christmas song','Make a paper snowflake','Watch a festive film','Write a Christmas card','Make a cosy hot drink','Go for a winter walk','Wrap a present with ribbon','Read a Christmas story'];
+const box=document.getElementById('tasks');tasks.forEach((t,i)=>{let l=document.createElement('label');l.className='tile row';l.innerHTML=`<input type="checkbox" data-i="${i}"><span>${t}</span>`;box.appendChild(l)});box.addEventListener('change',()=>{let n=box.querySelectorAll('input:checked').length;document.getElementById('taskCount').textContent=`${n} of ${tasks.length} completed`;document.getElementById('bar').style.width=(n/tasks.length*100)+'%'});
+const missions=['Put on a Christmas playlist','Add one decoration somewhere cosy','Write down a favourite Christmas memory','Try a new hot chocolate topping','Send someone a kind festive message','Make a little list of things you are looking forward to','Have a five-minute festive tidy'];function newMission(){document.getElementById('mission').textContent=missions[Math.floor(Math.random()*missions.length)]}
+</script></body></html>

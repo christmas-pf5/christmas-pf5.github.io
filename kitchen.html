@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mrs Claus's Kitchen | Christmas HQ</title><style>
+:root{--red:#9f3038;--green:#244b37;--cream:#fff7e8;--paper:#f3e7d2;--gold:#c6a45b;--ink:#342b25;--muted:#76695b}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+header{background:var(--green);color:var(--cream);padding:28px 18px 24px;text-align:center;border-bottom:5px solid var(--gold)}
+.eyebrow{letter-spacing:.2em;text-transform:uppercase;font-size:.75rem;color:#ead9a8}
+h1{font-size:clamp(2rem,6vw,3.4rem);margin:8px 0 6px;font-weight:normal}
+header p{margin:0;color:#f0e4c9}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:13px;background:#e9dcc3;border-bottom:1px solid #d7c6a8}
+nav a{color:var(--green);text-decoration:none;border:1px solid #cbb88f;border-radius:20px;padding:7px 12px;font-size:.9rem}
+main{max-width:1000px;margin:auto;padding:24px 16px 44px}
+.panel{background:#fffdf7;border:1px solid #dfd0b3;border-radius:16px;padding:20px;box-shadow:0 5px 16px #4b32100c;margin:14px 0}
+h2{color:var(--red);font-weight:normal;margin:0 0 12px;font-size:1.55rem}
+h3{color:var(--green);font-weight:normal}
+button,.button{font:inherit;cursor:pointer;border:0;border-radius:999px;background:var(--red);color:white;padding:11px 16px;transition:transform .15s,filter .15s}
+button:hover,.button:hover{filter:brightness(1.08);transform:translateY(-1px)}
+button.secondary{background:var(--green)}input,textarea,select{font:inherit;border:1px solid #d6c5a5;border-radius:10px;padding:10px;background:#fffdf7;color:var(--ink);max-width:100%}
+input[type="checkbox"]{accent-color:var(--green);width:18px;height:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.tile{background:#f8eedc;border:1px solid #e0cfad;border-radius:14px;padding:16px}
+.big{font-size:2rem}.muted{color:var(--muted)}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.progress{height:10px;background:#e8dcc5;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:var(--gold);transition:width .25s}
+footer{text-align:center;color:var(--muted);padding:18px;font-size:.9rem}
+.note{background:#f3e7d2;padding:12px;border-radius:10px;color:#574737}
+@media(max-width:560px){main{padding:16px 12px 30px}.panel{padding:16px}nav a{font-size:.82rem}}
+</style></head><body>
+<header><div class="eyebrow">✦ The Christmas HQ ✦</div><h1>Mrs Claus's Kitchen</h1><p>A little cinnamon, a little sparkle</p></header>
+<nav><a href="index.html">🏡 HQ</a><a href="countdown.html">Countdown</a><a href="cottage.html">Cottage</a><a href="cinema.html">Cinema</a><a href="kitchen.html">Kitchen</a><a href="wrapping.html">Wrapping Room</a></nav><main>
+<section class="panel"><div class="big">🍪 🥧 ☕</div><h2>Welcome to the kitchen</h2><p>Gather a few festive ideas for baking, decorating and making cosy treats. Ask a grown-up for help with ovens or hot liquids.</p></section>
+<section class="panel"><h2>What shall we make?</h2><div class="grid"><div class="tile"><h3>Gingerbread afternoon</h3><p>Cut out stars, trees and little houses; decorate with icing once cool.</p></div><div class="tile"><h3>Mince pie moment</h3><p>Serve mince pies on a plate with a dusting of icing sugar.</p></div><div class="tile"><h3>Hot chocolate bar</h3><p>Try marshmallows, cinnamon, whipped cream or chocolate curls.</p></div><div class="tile"><h3>Festive biscuit tin</h3><p>Make or decorate simple biscuits and save a few for sharing.</p></div></div></section>
+<section class="panel"><h2>Random festive treat generator</h2><div class="tile"><div class="big" id="treatIcon">🎁</div><h3 id="treatName">What will it be?</h3><p id="treatDesc">Press the button to reveal a kitchen idea.</p><button onclick="generate()">Surprise me ✨</button></div></section>
+<section class="panel"><h2>Kitchen checklist</h2><div id="checks" class="grid"></div><p><strong id="done">0 completed</strong></p><div class="progress"><span id="bar"></span></div></section>
+</main><footer>Made with a little Christmas magic ✦ Red · Evergreen · Cream · Gold</footer>
+<script>
+const treats=[['🍫','Hot chocolate','Choose a topping and make a cosy drink with help if needed.'],['🍪','Gingerbread decorating','Decorate cooled biscuits with icing and sprinkles.'],['🥧','Mince pie plate','Arrange mince pies on your prettiest festive plate.'],['🍎','Cinnamon apple slices','Slice an apple and sprinkle lightly with cinnamon.'],['🍿','Christmas movie popcorn','Make popcorn and add a festive serving bowl.'],['🍬','Sweet treat plate','Create a little plate of favourite seasonal treats.']];function generate(){let t=treats[Math.floor(Math.random()*treats.length)];document.getElementById('treatIcon').textContent=t[0];document.getElementById('treatName').textContent=t[1];document.getElementById('treatDesc').textContent=t[2]}
+const items=['Choose a recipe','Gather ingredients','Put on a festive playlist','Decorate or plate the treats','Share with someone','Tidy the kitchen together'];let c=document.getElementById('checks');items.forEach(t=>{let l=document.createElement('label');l.className='tile row';l.innerHTML=`<input type="checkbox"><span>${t}</span>`;c.appendChild(l)});c.addEventListener('change',()=>{let n=c.querySelectorAll('input:checked').length;document.getElementById('done').textContent=n+' of '+items.length+' completed';document.getElementById('bar').style.width=n/items.length*100+'%'})
+</script></body></html>

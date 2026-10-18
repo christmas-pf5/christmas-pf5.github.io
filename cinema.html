@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Christmas Cinema | Christmas HQ</title><style>
+:root{--red:#9f3038;--green:#244b37;--cream:#fff7e8;--paper:#f3e7d2;--gold:#c6a45b;--ink:#342b25;--muted:#76695b}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+header{background:var(--green);color:var(--cream);padding:28px 18px 24px;text-align:center;border-bottom:5px solid var(--gold)}
+.eyebrow{letter-spacing:.2em;text-transform:uppercase;font-size:.75rem;color:#ead9a8}
+h1{font-size:clamp(2rem,6vw,3.4rem);margin:8px 0 6px;font-weight:normal}
+header p{margin:0;color:#f0e4c9}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:13px;background:#e9dcc3;border-bottom:1px solid #d7c6a8}
+nav a{color:var(--green);text-decoration:none;border:1px solid #cbb88f;border-radius:20px;padding:7px 12px;font-size:.9rem}
+main{max-width:1000px;margin:auto;padding:24px 16px 44px}
+.panel{background:#fffdf7;border:1px solid #dfd0b3;border-radius:16px;padding:20px;box-shadow:0 5px 16px #4b32100c;margin:14px 0}
+h2{color:var(--red);font-weight:normal;margin:0 0 12px;font-size:1.55rem}
+h3{color:var(--green);font-weight:normal}
+button,.button{font:inherit;cursor:pointer;border:0;border-radius:999px;background:var(--red);color:white;padding:11px 16px;transition:transform .15s,filter .15s}
+button:hover,.button:hover{filter:brightness(1.08);transform:translateY(-1px)}
+button.secondary{background:var(--green)}input,textarea,select{font:inherit;border:1px solid #d6c5a5;border-radius:10px;padding:10px;background:#fffdf7;color:var(--ink);max-width:100%}
+input[type="checkbox"]{accent-color:var(--green);width:18px;height:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.tile{background:#f8eedc;border:1px solid #e0cfad;border-radius:14px;padding:16px}
+.big{font-size:2rem}.muted{color:var(--muted)}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.progress{height:10px;background:#e8dcc5;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:var(--gold);transition:width .25s}
+footer{text-align:center;color:var(--muted);padding:18px;font-size:.9rem}
+.note{background:#f3e7d2;padding:12px;border-radius:10px;color:#574737}
+@media(max-width:560px){main{padding:16px 12px 30px}.panel{padding:16px}nav a{font-size:.82rem}}
+</style></head><body>
+<header><div class="eyebrow">✦ The Christmas HQ ✦</div><h1>Christmas Cinema</h1><p>Blankets, twinkly lights and a festive film</p></header>
+<nav><a href="index.html">🏡 HQ</a><a href="countdown.html">Countdown</a><a href="cottage.html">Cottage</a><a href="cinema.html">Cinema</a><a href="kitchen.html">Kitchen</a><a href="wrapping.html">Wrapping Room</a></nav><main>
+<section class="panel"><h2>What sort of film night?</h2><p>Pick a mood and get a suggestion. You can add titles you like to your own watchlist below.</p>
+<div class="row"><button onclick="pick('cosy')">Cosy & gentle</button><button onclick="pick('funny')">Funny & festive</button><button onclick="pick('adventure')">Magical adventure</button><button onclick="pick('classic')">Traditional classic</button></div>
+<div class="tile" style="margin-top:16px"><h3 id="moodTitle">Your movie-night mood</h3><p id="suggestion">Choose a mood to get a suggestion.</p></div></section>
+<section class="panel"><h2>My Christmas watchlist</h2><form id="addForm" class="row"><input id="film" placeholder="Add a film title…" required><button type="submit">Add to list</button></form><ul id="watchlist"></ul><p class="muted">Your list stays in this browser on this device.</p><button class="secondary" onclick="clearList()">Clear watchlist</button></section>
+<section class="panel"><h2>Movie-night extras</h2><div class="grid"><div class="tile">🍿 <strong>Snack idea</strong><p id="snack">Popcorn with cinnamon sugar</p><button class="secondary" onclick="snack()">Another snack</button></div><div class="tile">🕯️ <strong>Atmosphere</strong><p id="atmos">Dim the lights and switch on the tree lights.</p><button class="secondary" onclick="atmos()">Another idea</button></div></div></section>
+</main><footer>Made with a little Christmas magic ✦ Red · Evergreen · Cream · Gold</footer>
+<script>
+const moods={cosy:['Cosy & gentle','Choose a comforting family favourite or a gentle animated film.'],funny:['Funny & festive','Pick a cheerful holiday comedy and bring the blankets.'],adventure:['Magical adventure','Try a fantasy or winter adventure with a little wonder.'],classic:['Traditional classic','Choose an older seasonal favourite or a classic story adaptation.']};
+function pick(m){document.getElementById('moodTitle').textContent=moods[m][0];document.getElementById('suggestion').textContent=moods[m][1]}
+let list=JSON.parse(localStorage.getItem('hqWatchlist')||'[]');function render(){let ul=document.getElementById('watchlist');ul.innerHTML='';list.forEach((f,i)=>{let li=document.createElement('li');li.textContent=f+' ';let b=document.createElement('button');b.textContent='Remove';b.className='secondary';b.onclick=()=>{list.splice(i,1);save()};li.appendChild(b);ul.appendChild(li)})}function save(){localStorage.setItem('hqWatchlist',JSON.stringify(list));render()}document.getElementById('addForm').addEventListener('submit',e=>{e.preventDefault();let v=document.getElementById('film').value.trim();if(v){list.push(v);document.getElementById('film').value='';save()}});function clearList(){list=[];save()}render();
+const snacks=['Popcorn with cinnamon sugar','Gingerbread biscuits','Apple slices with caramel dip','Mini sandwiches cut into stars','Hot chocolate with marshmallows'];function snack(){document.getElementById('snack').textContent=snacks[Math.floor(Math.random()*snacks.length)]}
+const atmosIdeas=['Dim the lights and switch on the tree lights.','Bring out your softest blankets and cushions.','Put on a gentle Christmas playlist.','Make a little snack tray before pressing play.'];function atmos(){document.getElementById('atmos').textContent=atmosIdeas[Math.floor(Math.random()*atmosIdeas.length)]}
+</script></body></html>

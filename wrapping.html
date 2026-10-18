@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Wrapping Room | Christmas HQ</title><style>
+:root{--red:#9f3038;--green:#244b37;--cream:#fff7e8;--paper:#f3e7d2;--gold:#c6a45b;--ink:#342b25;--muted:#76695b}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+header{background:var(--green);color:var(--cream);padding:28px 18px 24px;text-align:center;border-bottom:5px solid var(--gold)}
+.eyebrow{letter-spacing:.2em;text-transform:uppercase;font-size:.75rem;color:#ead9a8}
+h1{font-size:clamp(2rem,6vw,3.4rem);margin:8px 0 6px;font-weight:normal}
+header p{margin:0;color:#f0e4c9}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:13px;background:#e9dcc3;border-bottom:1px solid #d7c6a8}
+nav a{color:var(--green);text-decoration:none;border:1px solid #cbb88f;border-radius:20px;padding:7px 12px;font-size:.9rem}
+main{max-width:1000px;margin:auto;padding:24px 16px 44px}
+.panel{background:#fffdf7;border:1px solid #dfd0b3;border-radius:16px;padding:20px;box-shadow:0 5px 16px #4b32100c;margin:14px 0}
+h2{color:var(--red);font-weight:normal;margin:0 0 12px;font-size:1.55rem}
+h3{color:var(--green);font-weight:normal}
+button,.button{font:inherit;cursor:pointer;border:0;border-radius:999px;background:var(--red);color:white;padding:11px 16px;transition:transform .15s,filter .15s}
+button:hover,.button:hover{filter:brightness(1.08);transform:translateY(-1px)}
+button.secondary{background:var(--green)}input,textarea,select{font:inherit;border:1px solid #d6c5a5;border-radius:10px;padding:10px;background:#fffdf7;color:var(--ink);max-width:100%}
+input[type="checkbox"]{accent-color:var(--green);width:18px;height:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.tile{background:#f8eedc;border:1px solid #e0cfad;border-radius:14px;padding:16px}
+.big{font-size:2rem}.muted{color:var(--muted)}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.progress{height:10px;background:#e8dcc5;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:var(--gold);transition:width .25s}
+footer{text-align:center;color:var(--muted);padding:18px;font-size:.9rem}
+.note{background:#f3e7d2;padding:12px;border-radius:10px;color:#574737}
+@media(max-width:560px){main{padding:16px 12px 30px}.panel{padding:16px}nav a{font-size:.82rem}}
+</style></head><body>
+<header><div class="eyebrow">✦ The Christmas HQ ✦</div><h1>The Wrapping Room</h1><p>Ribbons, tags and little thoughtful details</p></header>
+<nav><a href="index.html">🏡 HQ</a><a href="countdown.html">Countdown</a><a href="cottage.html">Cottage</a><a href="cinema.html">Cinema</a><a href="kitchen.html">Kitchen</a><a href="wrapping.html">Wrapping Room</a></nav><main>
+<section class="panel"><h2>The present-wrapping list</h2><p>Add a gift and tick it off once it's wrapped. This list is saved in your browser on this device.</p>
+<form id="giftForm" class="row"><input id="giftName" placeholder="Gift or person…" required><select id="paper"><option>Classic red</option><option>Evergreen</option><option>Cream & gold</option><option>Kraft paper</option><option>Snowflakes</option></select><button>Add gift</button></form>
+<div id="giftList" class="grid" style="margin-top:16px"></div><p id="summary">0 gifts wrapped</p><div class="progress"><span id="bar"></span></div><p><button class="secondary" onclick="clearGifts()">Clear list</button></p></section>
+<section class="panel"><h2>Wrapping inspiration</h2><div class="grid"><div class="tile"><div class="big">🎀</div><h3>Traditional red</h3><p>Brown or cream paper, red ribbon and a sprig-inspired gift tag.</p></div><div class="tile"><div class="big">🌿</div><h3>Evergreen</h3><p>Green paper, twine and a small paper star.</p></div><div class="tile"><div class="big">✨</div><h3>Cream & gold</h3><p>Cream paper, gold ribbon and a handwritten label.</p></div><div class="tile"><div class="big">❄️</div><h3>Winter wonder</h3><p>Snowflake paper with a simple white or silver bow.</p></div></div></section>
+<section class="panel"><h2>Gift-tag message picker</h2><p id="tagline">Wishing you a Christmas full of little joys.</p><button onclick="newTag()">Another message</button><button class="secondary" onclick="copyTag()">Copy message</button></section>
+</main><footer>Made with a little Christmas magic ✦ Red · Evergreen · Cream · Gold</footer>
+<script>
+let gifts=JSON.parse(localStorage.getItem('hqGifts')||'[]');function saveGifts(){localStorage.setItem('hqGifts',JSON.stringify(gifts));renderGifts()}function renderGifts(){let el=document.getElementById('giftList');el.innerHTML='';gifts.forEach((g,i)=>{let d=document.createElement('div');d.className='tile';let label=document.createElement('label');label.className='row';let cb=document.createElement('input');cb.type='checkbox';cb.checked=g.done;cb.onchange=()=>{g.done=cb.checked;saveGifts()};let text=document.createElement('span');text.innerHTML='<strong></strong><br><small class="muted"></small>';text.querySelector('strong').textContent=g.name;text.querySelector('small').textContent='Paper: '+g.paper;label.append(cb,text);let del=document.createElement('button');del.className='secondary';del.textContent='Remove';del.onclick=()=>{gifts.splice(i,1);saveGifts()};d.append(label,document.createElement('p'),del);el.appendChild(d)});let done=gifts.filter(g=>g.done).length;document.getElementById('summary').textContent=`${done} of ${gifts.length} gifts wrapped`;document.getElementById('bar').style.width=(gifts.length?done/gifts.length*100:0)+'%'}document.getElementById('giftForm').addEventListener('submit',e=>{e.preventDefault();let name=document.getElementById('giftName').value.trim();if(name){gifts.push({name,paper:document.getElementById('paper').value,done:false});document.getElementById('giftName').value='';saveGifts()}});function clearGifts(){if(confirm('Clear your wrapping list?')){gifts=[];saveGifts()}}renderGifts();
+const tags=['Wishing you a Christmas full of little joys.','May your holidays be merry, bright and cosy.','Sending you a little festive sparkle!','Hope your Christmas is filled with warmth and wonder.','A small gift with lots of love.','Have a magical Christmas and a happy New Year!'];function newTag(){document.getElementById('tagline').textContent=tags[Math.floor(Math.random()*tags.length)]}function copyTag(){let t=document.getElementById('tagline').textContent;if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>alert('Message copied!')).catch(()=>alert(t));else alert(t)}
+</script></body></html>
