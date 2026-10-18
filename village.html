@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Christmas Gift Guide 🎁</title>
+<style>
+:root{--pine:#173f32;--green:#2d6248;--berry:#9f2638;--cream:#fff8e9;--gold:#d9b66f;--ink:#29382e;--muted:#6e756a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+.topline{height:7px;background:linear-gradient(90deg,var(--berry),var(--gold),var(--pine))}
+header{background:var(--pine);color:var(--cream);text-align:center;padding:22px 16px;border-bottom:3px solid var(--gold)}
+.brand{font:12px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#e9d5a3}
+nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:15px}
+button,a{cursor:pointer}nav button{background:transparent;border:1px solid #77917c;color:white;border-radius:999px;padding:9px 13px;font:15px Georgia,serif}
+nav button:hover,nav button:focus-visible{background:var(--gold);color:var(--pine)}
+.hero{text-align:center;color:var(--cream);padding:65px 20px 60px;background:radial-gradient(ellipse at top,#32684e,var(--pine) 72%);position:relative;overflow:hidden}
+.hero:before,.hero:after{content:'✦  ❄  ✧  ❄  ✦';position:absolute;color:var(--gold);opacity:.5;letter-spacing:.6em}
+.hero:before{top:22px;left:3%}.hero:after{bottom:18px;right:3%}
+.eyebrow{font:12px Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#e7ce8e}
+h1{font-weight:normal;font-size:clamp(2.7rem,8vw,5rem);line-height:1.02;margin:16px 0}
+.hero p{max-width:590px;margin:0 auto 24px;line-height:1.7;font-size:1.1rem;color:#f6eedb}
+.cta{display:inline-block;background:var(--berry);color:white;text-decoration:none;padding:13px 21px;border:1px solid #d98a86;border-radius:3px}
+main{max-width:1080px;margin:auto;padding:0 20px 48px}.intro{text-align:center;padding:42px 8px 22px}
+h2{font-size:clamp(1.8rem,4vw,2.5rem);color:var(--pine);font-weight:normal;margin:0 0 12px}
+.intro p{max-width:650px;margin:auto;color:var(--muted);line-height:1.7}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin:18px 0 30px}
+.toolbar input,.toolbar select{background:#fffdf6;border:1px solid #d9c9a8;border-radius:6px;padding:12px;color:var(--ink);font:15px Georgia,serif;min-width:180px}
+.section-title{display:flex;align-items:center;gap:12px;margin:30px 0 16px}.section-title:after{content:'';height:1px;background:#d8c9a8;flex:1}
+.section-title h3{margin:0;color:var(--berry);font-weight:normal;font-size:1.45rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:#fffdf6;border:1px solid #e7dcc4;border-radius:8px;padding:20px;box-shadow:0 5px 15px #253c2c0b;display:flex;flex-direction:column;min-height:235px}
+.card .icon{font-size:2rem}.card h4{color:var(--pine);font-size:1.25rem;font-weight:normal;margin:10px 0 8px}.card p{color:#666b60;line-height:1.55;margin:0 0 15px;flex:1}
+.pill{display:inline-block;border:1px solid #e8c9c5;color:var(--berry);border-radius:999px;padding:5px 8px;font:10px Arial,sans-serif;letter-spacing:.05em;align-self:flex-start}
+.card-actions{display:flex;gap:8px;margin-top:15px}.card-actions button{border-radius:4px;padding:9px 10px;font:14px Georgia,serif}
+.save{border:1px solid var(--pine);background:var(--pine);color:white}.save.saved{background:#e9f0e7;color:var(--pine)}.idea{border:1px solid #d9c9a8;background:transparent;color:var(--pine)}
+.panel{margin:40px 0;padding:26px;background:#f5ecd7;border:1px solid var(--gold);border-radius:8px;text-align:center}
+.panel h3{color:var(--berry);font-size:1.7rem;font-weight:normal;margin:8px 0}
+.panel p{line-height:1.7;max-width:620px;margin:8px auto 16px}
+.panel button{background:var(--pine);color:white;border:0;border-radius:4px;padding:12px 17px;font:16px Georgia,serif}
+#random-result{margin-top:16px;line-height:1.6;color:var(--pine)}
+.wishlist{background:#fffdf6;border:1px solid #e7dcc4;border-radius:8px;padding:22px;margin-top:28px}
+.wishlist h3{font-size:1.5rem;font-weight:normal;color:var(--pine);margin:0 0 8px}
+.wishlist ul{padding-left:22px;line-height:1.9}.empty{color:var(--muted);font-style:italic}
+.wishlist button{background:transparent;border:1px solid #d9c9a8;border-radius:4px;padding:8px 11px;color:var(--berry)}
+footer{text-align:center;background:var(--pine);color:#f8f0df;padding:28px 18px;border-top:3px solid var(--gold);line-height:1.8}
+footer small{color:#dfc98e;font:11px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+@media(max-width:520px){.hero{padding:55px 16px}.hero:before,.hero:after{font-size:.8rem}.toolbar input,.toolbar select{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="topline"></div>
+<header><div class="brand">✦ A little festive inspiration ✦</div>
+<nav aria-label="Gift categories">
+<button onclick="showCategory('all')">All gifts</button><button onclick="showCategory('family')">Family</button><button onclick="showCategory('friends')">Friends</button><button onclick="showCategory('cosy')">Cosy gifts</button><button onclick="showCategory('stocking')">Stocking fillers</button>
+</nav></header>
+<section class="hero">
+<div class="eyebrow">Thoughtful things • Merry moments</div><h1>The Christmas<br>Gift Guide</h1>
+<p>A little collection of lovely gift ideas for the people who make your world brighter. Find inspiration, save your favourites and build your very own Christmas wish list.</p>
+<a class="cta" href="#gifts">Find gift inspiration ↓</a>
+</section>
+<main id="gifts">
+<section class="intro"><div class="eyebrow" style="color:#9f2638">Wrapped with love</div><h2>Little things, big smiles</h2><p>There are no rules for the perfect present. Choose something thoughtful, handmade, useful, cosy or just wonderfully silly. Tap “Add to my wish list” to save ideas below.</p></section>
+<div class="toolbar">
+<input id="search" type="search" placeholder="Search gift ideas…" aria-label="Search gift ideas" oninput="renderGifts()">
+<select id="sort" aria-label="Sort gift ideas" onchange="renderGifts()"><option value="default">Sort: featured</option><option value="az">Name: A to Z</option></select>
+</div>
+<div id="gift-sections"></div>
+<section class="panel">
+<div class="eyebrow" style="color:#9f2638">Can't decide?</div><h3>🎁 Let the gift elves choose</h3>
+<p>Press the button for a random gift idea. You might discover the perfect inspiration!</p>
+<button onclick="randomGift()">✨ Surprise me with an idea</button><div id="random-result" aria-live="polite"></div>
+</section>
+<section class="wishlist" id="wishlist">
+<h3>❤️ My Christmas wish list</h3><p class="empty" id="empty-note">Your saved ideas will appear here. Tap “Add to my wish list” on any card!</p><ul id="wishlist-items"></ul>
+<button onclick="clearWishlist()">Clear my list</button>
+</section>
+<section class="intro"><div style="font-size:1.8rem;color:#9f2638">❧ ✦ ❧</div><h2>It's the thought that counts</h2><p>Add a handwritten note, make something yourself or spend time together. The most memorable gifts don't have to be big — they just have to feel like you.</p></section>
+</main>
+<footer><small>The Christmas Gift Guide</small><div>Thoughtful gifts, festive wishes & a little sparkle ✦</div><div>Have a very merry Christmas! 🎄</div></footer>
+<script>
+const gifts=[
+{name:"A Christmas Book",icon:"📚",desc:"A magical story, a cosy mystery or a book about something they absolutely love.",cat:"family",tag:"FOR BOOK LOVERS"},
+{name:"Movie Night Basket",icon:"🍿",desc:"Popcorn, favourite sweets, fluffy socks and a film picked just for them.",cat:"friends",tag:"NIGHT IN"},
+{name:"Cosy Blanket",icon:"🧣",desc:"A soft blanket for reading, watching Christmas films or curling up on chilly days.",cat:"cosy",tag:"COSY CLASSIC"},
+{name:"Personalised Photo Frame",icon:"🖼️",desc:"Choose a favourite memory and add a photo, a doodle or a handwritten note.",cat:"family",tag:"FULL OF MEMORIES"},
+{name:"Mini Hand Cream",icon:"🌸",desc:"A little everyday treat with a scent they love, tucked into a stocking.",cat:"stocking",tag:"LITTLE LUXURY"},
+{name:"Cute Keyring",icon:"🔑",desc:"Pick an animal, hobby, initial or tiny charm that reminds you of them.",cat:"stocking",tag:"SMALL & SWEET"},
+{name:"Hot Chocolate Kit",icon:"☕",desc:"Hot chocolate, marshmallows and a favourite mug for the cosiest evenings.",cat:"cosy",tag:"WARM WISHES"},
+{name:"Friendship Bracelet",icon:"❤️",desc:"Choose colours that mean something to you both, or make one by hand.",cat:"friends",tag:"MADE WITH LOVE"},
+{name:"Homemade Treats",icon:"🍪",desc:"Decorated biscuits or a little tin of festive treats, wrapped with a ribbon.",cat:"family",tag:"HANDMADE"},
+{name:"Festive Socks",icon:"🧦",desc:"Funny, fluffy or classic Christmas socks for a little seasonal cheer.",cat:"stocking",tag:"MERRY & BRIGHT"},
+{name:"Mini Puzzle or Game",icon:"🧩",desc:"A pocket-sized puzzle or quick game for family afternoons and sleepovers.",cat:"friends",tag:"LET'S PLAY"},
+{name:"Journal & Pens",icon:"✍️",desc:"A pretty notebook for doodles, lists, stories, plans or little daily memories.",cat:"cosy",tag:"CREATIVE MOMENTS"},
+{name:"Bag Charm",icon:"⭐",desc:"A little star, bow, pom-pom or favourite character to personalise a bag.",cat:"stocking",tag:"TINY TREASURE"},
+{name:"A Day Together",icon:"🎟️",desc:"Plan a walk, baking afternoon, cinema trip or at-home craft day together.",cat:"family",tag:"TIME TOGETHER"},
+{name:"DIY Craft Kit",icon:"🎨",desc:"A small project to make together: painting, beads, paper crafts or decorations.",cat:"friends",tag:"MAKE SOMETHING"}
+];
+const labels={family:"Family & thoughtful gifts",friends:"Gifts for friends",cosy:"Cosy little comforts",stocking:"Stocking fillers"};
+let active='all';let saved=[];
+function renderGifts(){
+ const q=document.getElementById('search').value.toLowerCase();
+ let items=gifts.filter(g=>(active==='all'||g.cat===active)&&(g.name+' '+g.desc+' '+g.tag).toLowerCase().includes(q));
+ if(document.getElementById('sort').value==='az')items.sort((a,b)=>a.name.localeCompare(b.name));
+ const root=document.getElementById('gift-sections');root.innerHTML='';
+ if(!items.length){root.innerHTML='<p class="empty">No gift ideas found — try another search.</p>';return}
+ const groups=active==='all'?['family','friends','cosy','stocking']:[active];
+ groups.forEach(cat=>{
+  const groupItems=items.filter(g=>g.cat===cat);if(!groupItems.length)return;
+  const section=document.createElement('section');section.innerHTML='<div class="section-title"><h3>'+labels[cat]+'</h3></div>';
+  const grid=document.createElement('div');grid.className='cards';
+  groupItems.forEach(g=>{
+   const idx=gifts.indexOf(g),isSaved=saved.includes(idx),card=document.createElement('article');card.className='card';
+   card.innerHTML='<div class="icon">'+g.icon+'</div><h4>'+g.name+'</h4><p>'+g.desc+'</p><span class="pill">'+g.tag+'</span><div class="card-actions"><button class="save '+(isSaved?'saved':'')+'" onclick="toggleSave('+idx+')">'+(isSaved?'✓ Saved':'＋ Add to my wish list')+'</button></div>';
+   grid.appendChild(card);
+  });section.appendChild(grid);root.appendChild(section);
+ });
+}
+function showCategory(cat){active=cat;renderGifts();document.getElementById('gifts').scrollIntoView({behavior:'smooth'})}
+function toggleSave(idx){saved=saved.includes(idx)?saved.filter(x=>x!==idx):[...saved,idx];renderGifts();renderWishlist()}
+function renderWishlist(){
+ const ul=document.getElementById('wishlist-items'),empty=document.getElementById('empty-note');ul.innerHTML='';empty.style.display=saved.length?'none':'block';
+ saved.forEach(i=>{const li=document.createElement('li');li.textContent=gifts[i].icon+' '+gifts[i].name+' — '+gifts[i].desc;ul.appendChild(li)});
+}
+function clearWishlist(){saved=[];renderGifts();renderWishlist()}
+function randomGift(){const g=gifts[Math.floor(Math.random()*gifts.length)];document.getElementById('random-result').innerHTML='<strong>🎁 Your idea: '+g.name+' '+g.icon+'</strong><br>'+g.desc+'<br><button style="margin-top:10px" onclick="toggleSave('+gifts.indexOf(g)+')">Add this to my wish list</button>'}
+renderGifts();renderWishlist();
+</script>
+</body>
+</html>
